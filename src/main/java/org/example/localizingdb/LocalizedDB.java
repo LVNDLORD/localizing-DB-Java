@@ -18,6 +18,11 @@ import java.util.ResourceBundle;
 
 public class LocalizedDB extends Application {
 
+    // Database connection parameters. Replace with actual credentials
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/localization";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "root";
+
     private ResourceBundle bundle;
     private Label firstNameLabel;
     private Label lastNameLabel;
@@ -103,8 +108,7 @@ public class LocalizedDB extends Application {
     private void saveData(String firstName, String lastName, String email, String selectedLanguage) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String jdbcUrl = "jdbc:mysql://localhost:3306/localization";
-            Connection conn = DriverManager.getConnection(jdbcUrl, "root", "root");
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 
             String tableName;
             switch (selectedLanguage) {
